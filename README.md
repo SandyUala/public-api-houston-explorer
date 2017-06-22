@@ -1,3 +1,10 @@
+Use `npm start` or `yarn start` to run locally at `http://localhost:3000`
+
+Will require manual input of Org Id and Token to give appropriate access. This can be found by going to whatever app you are emulating, and within the console, grabbing the values from `localStorage.authorization` (token) and `localStorage.organization`.
+
+Not available hosted as of yet.
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
