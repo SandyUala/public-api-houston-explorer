@@ -15,7 +15,7 @@ class App extends Component {
       authorization: '',
       organization: '',
       activeAPI: 1,
-      APIs: ["http://localhost:14000/v1", "http://houston.staging.astronomer.io/v1", "https://houston.astronomer.io/v1"]
+      APIs: ["http://localhost:14000/v1", "http://houston.staging.astronomer.io/v1", "https://houston.astronomer.io/v1", "https://cli.astronomer.io/v1"]
     }
   }
   graphQLFetcher = (graphQLParams) => {
@@ -71,6 +71,10 @@ class App extends Component {
               onClick={this.changeAPIconnection.bind(this, 2)}
               className={classNames({active:this.state.activeAPI === 2})}
                 >Prod</button>
+            <button
+              onClick={this.changeAPIconnection.bind(this, 3)}
+              className={classNames({active:this.state.activeAPI === 3})}
+                >Pro</button>
           </div>
           <div>
             <div style={{padding: "20px 0 0"}}>
