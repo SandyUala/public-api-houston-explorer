@@ -58,7 +58,7 @@ class App extends Component {
       resp.then(({ data: { createToken: { success, message, token }} }) => {
         if (!success) return this.setState({ error: message });
         localStorage.setItem(`token-${this.state.activeAPI}`, token)
-        this.setState({ authorization: token });
+        this.setState({ authorization: token, error: '' });
       });
     });
   }
