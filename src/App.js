@@ -4,6 +4,8 @@ import './App.css';
 
 import './graphiql.css';
 
+import { Button, Header, TextField } from './components';
+
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import classNames from 'classnames';
@@ -78,7 +80,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <div className="App-header">
+        <Header>
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Houston - Ground Control</h2>
           <p>Welcome to the interactive explorer console for the Astronomer Public GraphQL API</p>
@@ -90,43 +92,43 @@ class App extends Component {
 
           <div className="api-switch">
             <hr />
-            <button
+            <Button
               onClick={this.changeAPIconnection.bind(this, 0)}
               className={classNames({active:this.state.activeAPI === 0})}
-                >Local</button>
-            <button
+                >Local</Button>
+            <Button
               onClick={this.changeAPIconnection.bind(this, 1)}
               className={classNames({active:this.state.activeAPI === 1})}
-                >Staging</button>
-            <button
+                >Staging</Button>
+            <Button
               onClick={this.changeAPIconnection.bind(this, 2)}
               className={classNames({active:this.state.activeAPI === 2})}
-                >Prod</button>
-            <button
+                >Prod</Button>
+            <Button
               onClick={this.changeAPIconnection.bind(this, 3)}
               className={classNames({active:this.state.activeAPI === 3})}
-                >Pro</button>
+                >Pro</Button>
           </div>
           <div>
             <div style={{padding: "20px 0 0"}}>
-                <label>Username: <input name="username" value={this.state.username} onChange={this.updateHeader.bind(this)} /></label>
+                <TextField label="Username" name="username" type="text" value={this.state.username} onChange={this.updateHeader.bind(this)} />
             </div>
             <div style={{padding: "20px 0"}}>
-                <label>Password: <input name="password" type="password" value={this.state.password} onChange={this.updateHeader.bind(this)} /></label>
+                <TextField label="Password" name="password" type="password" value={this.state.password} onChange={this.updateHeader.bind(this)} />
             </div>
             {this.state.error ?
               <div className={classNames('error')}>{this.state.error}</div> : null
             }
-            <button
+            <Button
               onClick={this.logout.bind(this)}
               className={classNames('logout')}
                 >Logout
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={this.login.bind(this)}
               className={classNames('login')}
                 >Login
-            </button>
+            </Button>
           </div>
           <div>
             <div style={{padding: "20px 0 0"}}>
@@ -136,10 +138,10 @@ class App extends Component {
               <label>Org ID: <input name="organization" value={this.state.organization} onChange={this.updateHeader.bind(this)} /></label>
             </div>
         </div>
-    </div>
-    <div style={{height: "100vh"}}>
-        {Explorer}
-    </div>
+      </Header>
+      <div style={{height: "100vh"}}>
+          {Explorer}
+      </div>
     </div>
     );
   }

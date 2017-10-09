@@ -1,0 +1,90 @@
+// global styles
+@import '../theme.scss';
+
+// form elements
+// list first to enable class-specific overrides
+input[type='text'], input[type='number'], input[type='email'], input[type='password'] {
+  @include input-field;
+}
+
+// form classes
+:global {
+
+  .formTitle {
+    @include formTitle;
+  }
+
+  .inputTitle {
+    @include inputTitle;
+  }
+
+  .input {
+    text-align: left;
+    padding: .7rem 0;
+    h5 {
+      @include inputTitle;
+    }
+    // override react-toolbox classes
+    label {
+      height: auto;
+    }
+  }
+
+  .error {
+    display: block;
+    text-align: left;
+    color: $astro-red;
+    margin: .6rem 0;
+
+    a {
+      margin: 0 .2em;
+      color: $astro-green;
+      @include font($f600);
+      @include hoverColor($astro-light-green);
+    }
+  }
+
+  .note {
+    @include note;
+  }
+
+  .buttonRow {
+    @include row(flex-start);
+    flex-wrap: wrap;
+    margin-top: 1.2em;
+    button, a {
+      margin: 0 1.8em 0 0;
+    }
+    span {
+      @include note;
+    }
+    .error {
+      color: $astro-red;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.external {
+      justify-content: center;
+      margin-top: 2.6rem;
+    }
+  }
+
+  .input-group {
+    @include row(space-between);
+    margin: 0;
+    input {
+      margin-right: 1em;
+    }
+    .input-group-button {
+      @include close-button;
+      margin-left: 1em;
+      button {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+}

@@ -18,9 +18,9 @@
   font-size: large;
 }
 
-.api-switch button.active {
+/* .api-switch button.active {
   background-color: yellow;
-}
+} */
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

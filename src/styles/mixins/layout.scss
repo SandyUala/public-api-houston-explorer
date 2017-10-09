@@ -1,0 +1,44 @@
+// Mixins for flex and layout elements
+
+@mixin container {
+  width: 100%;
+  height: 100%;
+}
+
+// need to add -webkit prefix
+
+@mixin box($justify: center) {
+  @include container;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
+  flex-flow: column nowrap;
+}
+
+@mixin row($justify: center) {
+  @include container;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
+  flex-flow: row nowrap;
+}
+
+@mixin grid($justify: center) {
+  @include container;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
+  flex-flow: row wrap;
+}
+
+@mixin contentContainer {
+  width: 54rem;
+  max-width: 94%;
+  margin: auto;
+}
