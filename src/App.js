@@ -19,12 +19,12 @@ class App extends Component {
       username: '',
       password: '',
       error: '',
-      activeAPI: 1,
-      APIs: ["http://localhost:14000/v1", "http://houston.dev.astronomer.io/v1", "https://houston.astronomer.io/v1"]
+      activeAPI: 0,
+      APIs: window.APIs || [{ label: "local", uri: "http://localhost:14000/v1" }]
     }
   }
   graphQLFetcher = (graphQLParams) => {
-    return fetch(this.state.APIs[this.state.activeAPI], {
+    return fetch(this.state.APIs[this.state.activeAPI].uri, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ class App extends Component {
   }
   login(e) {
     const { username, password } = this.state;
-    return fetch(this.state.APIs[this.state.activeAPI], {
+    return fetch(this.state.APIs[this.state.activeAPI].uri, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -84,25 +84,21 @@ class App extends Component {
           <h2 className='filmotype'>Houston - Ground Control</h2>
           <p className='filmotype'>Welcome to the interactive explorer console for the Astronomer Public GraphQL API</p>
           <p style={{wordWrap: "break-word"}}>
-            <b>API</b>: {this.state.APIs[this.state.activeAPI]} <br />
+            <b>API</b>: {this.state.APIs[this.state.activeAPI].uri} <br />
             <b>TOKEN</b>: {this.state.authorization} <br />
             <b>ORG</b>: {this.state.organization} <br />
           </p>
 
           <div className="api-switch">
             <hr />
-            <Button
-              onClick={this.changeAPIconnection.bind(this, 0)}
-              className={classNames({ active:this.state.activeAPI === 0 })}
-                >Local</Button>
-            <Button
-              onClick={this.changeAPIconnection.bind(this, 1)}
-              className={classNames({ active:this.state.activeAPI === 1 })}
-                >Staging</Button>
-            <Button
-              onClick={this.changeAPIconnection.bind(this, 2)}
-              className={classNames({ active:this.state.activeAPI === 2 })}
-                >Prod</Button>
+            {this.state.APIs.map((API, i) => (
+              <Button
+                onClick={this.changeAPIconnection.bind(this, i)}
+                className={classNames({ active: this.state.activeAPI === i })}
+              >
+                {API.label}
+              </Button>
+            ))}
           </div>
           <div>
             <div style={{padding: "20px 0 0"}}>
