@@ -88,9 +88,8 @@ class App extends Component {
             <b>TOKEN</b>: {this.state.authorization} <br />
             <b>ORG</b>: {this.state.organization} <br />
           </p>
-
-          <div className="api-switch">
-            <hr />
+          <hr />
+          <div className="api-switch section-wrapper">
             {this.state.APIs.map((API, i) => (
               <Button
                 onClick={this.changeAPIconnection.bind(this, i)}
@@ -100,8 +99,8 @@ class App extends Component {
               </Button>
             ))}
           </div>
-          <div>
-            <div style={{padding: "20px 0 0"}}>
+          <div className="section-wrapper">
+            <div>
                 <TextField placeholder="Username" name="username" type="text" value={this.state.username} onChange={this.updateHeader.bind(this)} />
             </div>
             <div style={{padding: "20px 0"}}>
@@ -121,11 +120,11 @@ class App extends Component {
                 >Login
             </Button>
           </div>
-          <div>
-            <div style={{padding: "20px 0 0"}}>
+          <div className="section-wrapper">
+            <div>
               <label>Token: <input name="authorization" value={this.state.authorization} onChange={this.updateHeader.bind(this)}/></label>
             </div>
-            <div style={{padding: "20px 0"}}>
+            <div style={{padding: "20px 0 0 0"}}>
               <label>Org ID: <input name="organization" value={this.state.organization} onChange={this.updateHeader.bind(this)} /></label>
             </div>
         </div>
