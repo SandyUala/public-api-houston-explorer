@@ -20,7 +20,7 @@ class App extends Component {
       password: '',
       error: '',
       activeAPI: 1,
-      APIs: ["http://localhost:14000/v1", "http://houston.staging.astronomer.io/v1", "https://houston.astronomer.io/v1", "https://cli.astronomer.io/v1"]
+      APIs: ["http://localhost:14000/v1", "http://houston.dev.astronomer.io/v1", "https://houston.astronomer.io/v1"]
     }
   }
   graphQLFetcher = (graphQLParams) => {
@@ -81,9 +81,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Houston - Ground Control</h2>
-          <p>Welcome to the interactive explorer console for the Astronomer Public GraphQL API</p>
+          <h2 className='filmotype'>Houston - Ground Control</h2>
+          <p className='filmotype'>Welcome to the interactive explorer console for the Astronomer Public GraphQL API</p>
           <p style={{wordWrap: "break-word"}}>
             <b>API</b>: {this.state.APIs[this.state.activeAPI]} <br />
             <b>TOKEN</b>: {this.state.authorization} <br />
@@ -94,27 +93,23 @@ class App extends Component {
             <hr />
             <Button
               onClick={this.changeAPIconnection.bind(this, 0)}
-              className={classNames({active:this.state.activeAPI === 0})}
+              className={classNames({ active:this.state.activeAPI === 0 })}
                 >Local</Button>
             <Button
               onClick={this.changeAPIconnection.bind(this, 1)}
-              className={classNames({active:this.state.activeAPI === 1})}
+              className={classNames({ active:this.state.activeAPI === 1 })}
                 >Staging</Button>
             <Button
               onClick={this.changeAPIconnection.bind(this, 2)}
-              className={classNames({active:this.state.activeAPI === 2})}
+              className={classNames({ active:this.state.activeAPI === 2 })}
                 >Prod</Button>
-            <Button
-              onClick={this.changeAPIconnection.bind(this, 3)}
-              className={classNames({active:this.state.activeAPI === 3})}
-                >Pro</Button>
           </div>
           <div>
             <div style={{padding: "20px 0 0"}}>
-                <TextField label="Username" name="username" type="text" value={this.state.username} onChange={this.updateHeader.bind(this)} />
+                <TextField placeholder="Username" name="username" type="text" value={this.state.username} onChange={this.updateHeader.bind(this)} />
             </div>
             <div style={{padding: "20px 0"}}>
-                <TextField label="Password" name="password" type="password" value={this.state.password} onChange={this.updateHeader.bind(this)} />
+                <TextField placeholder="Password" name="password" type="password" value={this.state.password} onChange={this.updateHeader.bind(this)} />
             </div>
             {this.state.error ?
               <div className={classNames('error')}>{this.state.error}</div> : null
