@@ -20,7 +20,7 @@ class App extends Component {
       password: '',
       error: '',
       activeAPI: 0,
-      APIs: window.APIs || [{ label: "local", uri: "http://localhost:14000/v1" }]
+      APIs: window.APIs || [{label:"local", uri: "http://localhost:14000/v1"}]
     }
   }
   graphQLFetcher = (graphQLParams) => {
