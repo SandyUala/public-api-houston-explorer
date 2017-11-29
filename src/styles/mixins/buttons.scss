@@ -1,0 +1,73 @@
+@import './typography.scss';
+@import './colors.scss';
+@import './effects.scss';
+
+@mixin button {
+  @include filmotype-fashion;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  padding: 1.2em 1.6em 1em;
+  margin: 0;
+  color: $astro-dark-white;
+  @include hoverScale;
+}
+
+@mixin gradient($left, $right) {
+  //background: $left; /* Old browsers */
+  background-image: -webkit-linear-gradient(left, $left, $right); /* For Chrome and Safari */
+   background-image:    -moz-linear-gradient(left, $left, $right); /* For old Fx (3.6 to 15) */
+   background-image:     -ms-linear-gradient(left, $left, $right); /* For pre-releases of IE 10*/
+   background-image:      -o-linear-gradient(left, $left, $right); /* For old Opera (11.1 to 12.0) */
+   background-image:         linear-gradient(to right, $left, $right); /* Standard syntax; must be last */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$left, endColorstr=$right, GradientType=1 ); /* IE6-9 */
+}
+
+@mixin primary-button {
+  @include button;
+  @include gradient($astro-blue, $astro-green);
+  @include bgSwoosh;
+}
+
+@mixin red-orange-button {
+  @include button;
+  @include gradient($astro-red, $astro-orange);
+}
+
+@mixin red-button {
+  @include button;
+  @include gradient(rgb(241, 90, 36), rgb(244, 54, 44));
+}
+
+@mixin text-gradient($left, $right) {
+  @include gradient($left, $right);
+   color:transparent;
+   -webkit-background-clip: text;
+   background-clip: text;
+}
+
+@mixin text-button($left, $right) {
+  @include filmotype-fashion;
+  @include text-gradient($left, $right);
+  @include bgSwoosh;
+}
+
+@mixin blue-green {
+  @include text-button($astro-blue, $astro-green);
+}
+
+@mixin red-orange {
+  @include text-button($astro-red, $astro-orange);
+}
+
+// default to down
+@mixin triangle {
+  display: inline-block;
+  margin: 0 .5em;
+  width: 0;
+  height: 0;
+  border-left: .3em solid transparent;
+  border-right: .3em solid transparent;
+  border-top: .5em solid $astro-dark-white;
+  @include hoverScaleSm;
+}

@@ -1,0 +1,7 @@
+@import '../theme.scss';
+
+a, button {
+  &:active {
+    transform: scale(.97);
+  }
+}

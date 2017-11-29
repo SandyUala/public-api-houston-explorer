@@ -1,0 +1,159 @@
+@import './typography.scss';
+@import './colors.scss';
+@import './sizes.scss';
+@import './effects.scss';
+
+// === Default Form and Config Styles ===
+
+// Input fields (include this with .input and .input:focus)
+@mixin input-field {
+  border: none;
+  border-radius: 3px;
+  @include font($f500);
+  font-size: 1.3em;
+  color: $astro-purple;
+  padding: .5em 1.2em .5em .8em;
+  height: auto;
+  margin: .5em 0;
+  width: 100%;
+  max-width: $formWidth;
+  background-color: $astro-dark-white;
+  box-shadow: none;
+  &:hover, &:focus {
+    background-color: $astro-dark-white;
+    border: none;
+  }
+  &::placeholder {
+    color: $astro-light-beige;
+  }
+}
+
+// Checkboxes for congurations
+@mixin checkbox {
+  .field {
+    margin: 0;
+  }
+  .text {
+    @include font($f600);
+    font-size: 1.4em !important;
+    color: $astro-purple !important;
+    padding-left: .75em !important;
+    white-space: normal;
+  }
+  .check {
+    color: $astro-white;
+    border-radius: 3px;
+    border-width: .2em;
+    width: 1.4em;
+    height: 1.4em;
+    margin-top: .1em;
+  }
+  .checked {
+    background-color: $astro-purple !important;
+    border-color: $astro-purple !important;
+  }
+  .checked:after {
+    transform: scale(1) rotate(45deg) !important;
+    
+  }
+}
+
+// Just the letter X for deleting entries in an array or map in Configs
+// Use &#10005; for the button content
+@mixin close-button {
+  background: none;
+  border: none;
+  color: $astro-beige;
+  @include font($f600);
+}
+
+// Plus sign in a circle, for adding entries to an array or map
+// Use <span>&#43;</span> for the button content
+@mixin add-button {
+  //@include box;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+  border-radius: 100px;
+  background-color: $astro-beige;
+  padding: 0;
+  padding-bottom: .6rem; // offset for + sign not centering in line
+  line-height: 0;
+  color: $astro-white;
+  font-size: 2.5rem;
+  @include font($f200);
+}
+
+@mixin inputTitle {
+  font-size: 1.1em;
+  @include font($f500);
+  color: $astro-beige;
+  margin: 0;
+  text-align: left;
+}
+
+
+
+@mixin formTitle {
+  text-align: center;
+  @include font($f400);
+  color: $astro-purple;
+  font-size: 1.4em;
+  margin: 0;
+}
+
+@mixin note {
+  color: $astro-beige;
+  @include font($f400);
+  font-size: 1em;
+}
+
+@mixin formStyles {
+  p {
+    color: $astro-beige;
+    @include font($f500);
+    font-size: 1.25em;
+    a {
+      color: $astro-green;
+      @include font($f800);
+      font-size: 1em;
+
+      @include hoverColor($astro-light-green);
+    }
+  }
+  section {
+    padding: 1rem 0;
+    margin: 1rem 0;
+  }
+  h2 {
+    @include formTitle;
+  }
+  h5 {
+    @include inputTitle;
+  }
+  hr {
+    width: 100%;
+    border-style: solid;
+    border-color: $astro-dark-white;
+    margin: 2rem 0;
+  }
+}
+
+@mixin sectionHeader {
+    @include row;
+    margin: 1rem 0;
+    h3 {
+      flex: 1;
+      @include font($f400);
+      color: $astro-light-beige;
+      font-size: 1.25em;
+      white-space: nowrap;
+    }
+    hr {
+      flex: 1;
+      margin-left: 1rem;
+      width: 100%;
+      border-style: dotted;
+      border-color: $astro-light-beige;
+    }
+}

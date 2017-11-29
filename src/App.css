@@ -12,14 +12,27 @@
   background-color: #222;
   padding: 20px;
   color: white;
+  font-family: 'Filmotype Fashion';
 }
 
 .App-intro {
   font-size: large;
 }
 
-.api-switch button.active {
+/* .api-switch button.active {
   background-color: yellow;
+} */
+
+.button-wrapper {
+  padding: 0 1rem;
+}
+
+.filmotype {
+  font-family: "Filmotype Fashion";
+}
+
+.section-wrapper {
+  padding: 1rem;
 }
 
 @keyframes App-logo-spin {

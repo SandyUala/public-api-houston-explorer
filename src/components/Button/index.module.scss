@@ -1,0 +1,13 @@
+@import "../../styles/theme.scss";
+
+
+.button-wrapper {
+    font-size: 0.5em;
+    .button {
+        @include red-orange-button;
+    }
+    
+    .active {
+        @include primary-button;
+    }
+}

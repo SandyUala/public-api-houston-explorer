@@ -1,0 +1,11 @@
+// Use theme as index of all mixin styles
+// Mixins only! no css styles should placed in here, as will be repeated with every import
+
+@import './mixins/typography.scss';
+@import './mixins/colors.scss';
+@import './mixins/buttons.scss';
+@import './mixins/forms.scss';
+@import './mixins/layout.scss';
+@import './mixins/sizes.scss';
+@import './mixins/effects.scss';
+@import './mixins/static.scss';

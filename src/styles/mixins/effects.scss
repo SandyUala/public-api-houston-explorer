@@ -1,0 +1,63 @@
+$activeTransition: all 150ms ease-out;
+$transition: all 250ms ease-in;
+
+@mixin hoverScale {
+  cursor: pointer;
+  transition: $transition;
+  &:hover, &:focus {
+    transform: scale(1.03);
+  }
+  &:active {
+    transform: scale(.98);
+  }
+}
+
+// use for smaller elements where a larger scale is needed
+@mixin hoverScaleSm {
+  cursor: pointer;
+  transition: $transition;
+  &:hover, &:focus {
+    transform: scale(1.06);
+  }
+  &:active {
+    transform: scale(.94);
+  }
+}
+
+@mixin bgSwoosh {
+  cursor: pointer;
+  transition: $transition;
+  background-size: 100%;
+  background-position: left;
+  &:hover, &:focus {
+    background-size: 160%;
+   }
+}
+
+@mixin hoverBold {
+  cursor: pointer;
+  transition: $transition;
+  &:hover, &:focus, &:active {
+    font-weight: bolder;
+  }
+}
+
+@mixin hoverColor($color) {
+  cursor: pointer;
+  transition: $transition;
+  &:hover, &:focus, &:active {
+    color: $color;
+  }
+}
+
+@mixin hoverSpin {
+  cursor: pointer;
+  transition: $transition;
+  &:hover, &:focus {
+    transform: rotate(60deg);
+  }
+}
+
+@mixin shadowed($shade) {
+  box-shadow: .4em .9em 4em $shade;
+}
