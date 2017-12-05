@@ -6,6 +6,11 @@ import './graphiql.css';
 
 import { Button, Header, TextField } from './components';
 
+import { split, execute } from "apollo-link";
+import { HttpLink } from "apollo-link-http";
+import { WebSocketLink } from "apollo-link-ws";
+import { getMainDefinition } from "apollo-utilities";
+import { parse } from 'graphql';
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import classNames from 'classnames';
@@ -20,19 +25,41 @@ class App extends Component {
       password: '',
       error: '',
       activeAPI: 0,
-      APIs: window.APIs || [{label:"local", uri: "http://localhost:14000/v1"}]
+      APIs: window.APIs || [{label:"local", http: "http://localhost:14000/v1", ws: "ws://localhost:14000/w1"}]
     }
   }
   graphQLFetcher = (graphQLParams) => {
-    return fetch(this.state.APIs[this.state.activeAPI].uri, {
-      method: 'post',
+
+    const httpLink = new HttpLink({
+      uri: this.state.APIs[this.state.activeAPI].http,
       headers: {
-        'Content-Type': 'application/json',
-        'authorization': this.state.authorization,
-        'organization': this.state.organization
+        "Authorization": this.state.authorization,
+        "organization": this.state.organization
+      }
+    });
+
+    const wsLink = new WebSocketLink({
+      uri: this.state.APIs[this.state.activeAPI].ws,
+      options: {
+        reconnect: true
+      }
+    });
+
+    const link = split(
+      ({ query }) => {
+        const { kind, operation } = getMainDefinition(query);
+        return kind === 'OperationDefinition' && operation === 'subscription';
       },
-      body: JSON.stringify(graphQLParams),
-    }).then(response => response.json());
+      wsLink,
+      httpLink,
+    );
+
+    const fetcher = (operation) => {
+      operation.query = parse(operation.query);
+      return execute(link, operation);
+    };
+
+    return fetcher(graphQLParams);
   }
   changeAPIconnection = (val) => {
     if (this.state.activeAPI !== val) {
@@ -41,7 +68,7 @@ class App extends Component {
   }
   login(e) {
     const { username, password } = this.state;
-    return fetch(this.state.APIs[this.state.activeAPI].uri, {
+    return fetch(this.state.APIs[this.state.activeAPI].http, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +118,7 @@ class App extends Component {
           <hr />
           <div className="api-switch section-wrapper">
             {this.state.APIs.map((API, i) => (
-              <Button
+              <Button key={`api${i}`}
                 onClick={this.changeAPIconnection.bind(this, i)}
                 className={classNames({ active: this.state.activeAPI === i })}
               >
