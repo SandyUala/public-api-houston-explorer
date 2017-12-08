@@ -41,7 +41,7 @@ class App extends Component {
     const wsLink = new WebSocketLink({
       uri: this.state.APIs[this.state.activeAPI].ws,
       options: {
-        reconnect: true
+        reconnect: false
       }
     });
 
